@@ -30,7 +30,7 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
                 },
               ),
             ),
-            Expanded(child: child)
+            Expanded(child:)
           ],
         ),
       ),
