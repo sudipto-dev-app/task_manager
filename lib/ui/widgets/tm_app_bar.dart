@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+
+class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const TMAppbar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      actions: [
+        IconButton(onPressed: () {}, icon: Icon(Icons.logout_outlined)),
+      ],
+      backgroundColor: Colors.green,
+      title: Row(
+        spacing: 8,
+        children: [
+          CircleAvatar(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Full name',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: Colors.white),
+              ),
+              Text(
+                'sudipto@gmail.com',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(color: Colors.white),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
