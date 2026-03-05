@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/canceled_task_screen.dart';
+import 'package:task_manager/ui/screens/completed_task_screen.dart';
+import 'package:task_manager/ui/screens/new_task_screen.dart';
 import 'package:task_manager/ui/screens/progress_task_screen.dart';
 import 'package:task_manager/ui/widgets/tm_app_bar.dart' show TMAppbar;
 
@@ -13,10 +16,10 @@ class _MainNavBarHolderScreenState extends State<MainNavBarHolderScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
+    NewTaskScreen(),
     ProgressTaskScreen(),
-    ProgressTaskScreen(),
-    ProgressTaskScreen(),
-    ProgressTaskScreen(),
+    CanceledTaskScreen(),
+    CompletedTaskScreen(),
   ];
 
   @override

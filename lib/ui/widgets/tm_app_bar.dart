@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/update_profile_screen.dart';
 
 class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
   const TMAppbar({super.key});
@@ -13,7 +14,15 @@ class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         spacing: 8,
         children: [
-          CircleAvatar(),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
+              );
+            },
+            child: CircleAvatar(),
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

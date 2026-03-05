@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/widgets/task_card.dart' show TaskCard;
-import 'package:task_manager/ui/widgets/task_count_by_status_card.dart'
-    show TaskCountByStatusCard;
 
-class ProgressTaskScreen extends StatefulWidget {
-  const ProgressTaskScreen({super.key});
+class CompletedTaskScreen extends StatefulWidget {
+  const CompletedTaskScreen({super.key});
 
   @override
-  State<ProgressTaskScreen> createState() => _ProgressTaskScreenState();
+  State<CompletedTaskScreen> createState() => _CompletedTaskScreenState();
 }
 
-class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
+class _CompletedTaskScreenState extends State<CompletedTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +18,7 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
           child: ListView.separated(
             itemCount: 10,
             itemBuilder: (context, index) {
-              return TaskCard(TaskStatus: 'Progressing', chipColor: Colors.orange,);
+              return TaskCard(TaskStatus: 'Completed', chipColor: Colors.green,);
             },
             separatorBuilder: (context, index) {
               return SizedBox(height: 8);
@@ -28,7 +26,6 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
           ),
         ),
       ),
-    );
+    );;
   }
 }
-
