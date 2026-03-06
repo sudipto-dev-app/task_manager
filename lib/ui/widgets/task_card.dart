@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class TaskCard extends StatelessWidget {
 
-  final String TaskStatus;
+  final String taskStatus;
   final Color chipColor;
-   const TaskCard({super.key, required this.TaskStatus, required this.chipColor,});
+   const TaskCard({super.key, required this.taskStatus, required this.chipColor,});
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -28,7 +28,7 @@ class TaskCard extends StatelessWidget {
           Row(
             children: [
               Chip(
-                label: Text(TaskStatus),
+                label: Text(taskStatus),
                 backgroundColor: chipColor,
                 labelStyle: TextStyle(
                     color: Colors.white

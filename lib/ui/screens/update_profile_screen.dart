@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:task_manager/ui/widgets/photo_picker.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 import 'package:task_manager/ui/widgets/tm_app_bar.dart';
 
@@ -16,10 +18,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final ImagePicker _imagePicker = ImagePicker();
+  XFile? selectedImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TMAppbar(),
+      appBar: TMAppbar(fromUpdateProfile: true),
       body: ScreenBackground(
         child: SingleChildScrollView(
           child: Padding(
@@ -29,44 +35,40 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 32,),
-                  Text('Update Profile',style: Theme.of(context).textTheme.titleLarge,),
-                  const SizedBox(height: 16,),
-                  TextField(
-                  
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                        hintText: 'Photos'
-                    ),
+                  const SizedBox(height: 32),
+                  Text(
+                    'Update Profile',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const SizedBox(height: 8,),
+                  const SizedBox(height: 16),
+                  PhotoPickerField(onTap: _pickImage,
+                  selectedPhoto: selectedImage,),
+                  const SizedBox(height: 8),
                   TextField(
                     controller: _emailTEController,
-                    decoration: InputDecoration(
-                        hintText: 'Email'
-                    ),
-                  ),const SizedBox(height: 8,),
-                  TextField(controller: _firstNameTEController,
-                    decoration: InputDecoration(
-                        hintText: 'First Name'
-                    ),
-                  ),const SizedBox(height: 8,),
-                  TextField(controller: _lastNameTEController,
-                    decoration: InputDecoration(
-                        hintText: 'Last Name'
-                    ),
-                  ),const SizedBox(height: 8,),
-                  TextField(controller: _mobileTEController,
-                    decoration: InputDecoration(
-                        hintText: 'Mobile'
-                    ),
-                  ),const SizedBox(height: 8,),
-                  TextField(controller: _passwordTEController,
-                    decoration: InputDecoration(
-                        hintText: 'Password'
-                    ),
+                    decoration: InputDecoration(hintText: 'Email'),
                   ),
-                  const SizedBox(height: 16,),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _firstNameTEController,
+                    decoration: InputDecoration(hintText: 'First Name'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _lastNameTEController,
+                    decoration: InputDecoration(hintText: 'Last Name'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _mobileTEController,
+                    decoration: InputDecoration(hintText: 'Mobile'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _passwordTEController,
+                    decoration: InputDecoration(hintText: 'Password'),
+                  ),
+                  const SizedBox(height: 16),
                   FilledButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -79,7 +81,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       Navigator.pop(context);
                     },
                     child: Text('Update'),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -88,6 +90,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       ),
     );
   }
+
+  Future<void> _pickImage() async {
+    XFile? pickedImage = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedImage != null) {
+      selectedImage = pickedImage;
+      setState(() {});
+    }
+  }
+
   @override
   void dispose() {
     _emailTEController.dispose;

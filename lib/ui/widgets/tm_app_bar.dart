@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/update_profile_screen.dart';
 
 class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const TMAppbar({super.key});
+  const TMAppbar({super.key, this.fromUpdateProfile});
+  final bool? fromUpdateProfile;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,9 @@ class TMAppbar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           InkWell(
             onTap: () {
+              if(fromUpdateProfile ?? false){
+               return;
+              }
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => UpdateProfileScreen()),
